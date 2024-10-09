@@ -1,0 +1,129 @@
+{
+    "layer": "top",
+    "modules-left": ["custom/launcher","cpu","memory","tray"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["network","bluetooth","backlight","pulseaudio","clock", "battery"],
+
+    "pulseaudio": {
+        "tooltip": true,
+        "scroll-step": 5,
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 {volume}%",
+        "on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "tooltip-format": "{desc} {volume}%"
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
+    },
+
+
+    "network": {
+        "tooltip": true,
+        "format": "{ifname}",
+        "format-wifi": "{essid} {signalStrength}%",
+        "format-ethernet": "{ifname}",
+        "format-disconnected": "disconnected",
+        "format-disabled": "disabled",
+        "tooltip-format": "{ifname} Up:{bandwidthUpBits} Down:{bandwidthDownBits} {frequency} \n{ipaddr} {gwaddr} {netmask}"
+    },
+
+    "bluetooth": {
+        "format": "{status}",
+        "format-disabled": "disabled",
+        "format-off": "off",
+        "format-no-controller": "no controller",
+        "format-on": "disconnected",
+        "format-connected": "{device_alias}",
+        "tooltip": true,
+        "tooltip-format": "{controller_alias} {status}",
+        "tooltip-format-connected": "{controller_alias} {status} with {device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}"
+    },
+
+    "backlight": {
+        "tooltip": false,
+        "format": " {}%",
+        "interval": 1 
+        // "on-scroll-up": "light -A 5",
+        // "on-scroll-down": "light -U 5"
+    },
+
+    "battery": {
+        "states": {
+            "good": 90,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "tray":{
+        "icon-size":18,
+        "spacing": 10
+    },
+
+    "clock": {
+        "format": "{:%H:%M %d.%m.%Y}",
+        "tooltip": false
+    },
+
+    "cpu": {
+        "interval": 15,
+        "format": " {}%",
+        "max-length": 10
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "max-length": 10
+    },
+
+    "custom/media": {
+        "interval": 30,
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 20,
+        "format-icons": {
+            "spotify": " ",
+            "default": " "
+        },
+        "escape": true,
+        "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
+        "on-click": "playerctl play-pause"
+    },
+
+    "custom/launcher":{
+        "format": " ",
+        "on-click": "tofi-drun",
+        "on-click-right": ""
+    },
+
+    "custom/power":{
+        "format": " ",
+        "on-click": "bash ~/.config/rofi/leave/leave.sh"
+    },
+
+    "custom/updates":{
+        "format": "{} Update(s)",
+        "exec": "checkupdates | wc -l",
+        "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
+        "interval": 15,
+        "on-click": "alacritty -e paru -Syu && notify-send 'The system has been updated' "
+    },
+
+    "custom/wallpaper":{
+        "format":" ",
+        "on-click": "bash ~/.config/system_scripts/pkill_bc"
+    }
+}
