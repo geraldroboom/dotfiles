@@ -17,3 +17,5 @@ nvim/lazy-lock.json
 !fontconfig/
 
 !git/
+
+!hypr/
