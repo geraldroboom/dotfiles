@@ -1,0 +1,9 @@
+[user]
+	name = Gerald Roboom
+	email = gerald.roboom@gmail.com
+[core]
+	editor = nvim
+[color]
+	ui = true
+[pull]
+	rebase = true
