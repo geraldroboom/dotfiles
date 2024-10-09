@@ -6,3 +6,6 @@
 
 !zsh/
 zsh/fsh
+
+!nvim/
+nvim/lazy-lock.json
