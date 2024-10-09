@@ -1,7 +1,8 @@
 # dotfiles
+
 My collection of dotfiles
 
-## Zsh Config
+## Zsh
 
 ```bash
 echo export ZDOTDIR="$HOME/.config/zsh/" >> /etc/zsh/zshenv
