@@ -11,3 +11,5 @@ zsh/fsh
 nvim/lazy-lock.json
 
 !alacritty/
+
+!btop/
