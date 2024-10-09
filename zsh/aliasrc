@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Use neovim for vim if present.
+alias vim="nvim" vimdiff="nvim -d"
+
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+	audio="mpv" \
+	video="mpv" \
+	image="imv" \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	rsync="rsync -vrPlu" \
+	mkd="mkdir -pv" \
+	rmd="rmdir -pv" \
+	ffmpeg="ffmpeg -hide_banner"
+
+# Colorize commands when possible.
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	l="ls -al" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	# ccat="highlight --out-format=ansi" \
+	ip="ip -color=auto"
+
+# These common commands aexecutere just too long! Abbreviate them.
+alias \
+	ka="killall" \
+	g="git" \
+	sdn="shutdown -h now" \
+	p="pacman" \
+	z="zathura" \
+	v="vim" \
+	lo="libreoffice" \
+	office="libreoffice"
