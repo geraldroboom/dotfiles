@@ -6,6 +6,7 @@
 
 !zsh/
 zsh/fsh
+zsh/.zcompdump
 
 !nvim/
 nvim/lazy-lock.json
