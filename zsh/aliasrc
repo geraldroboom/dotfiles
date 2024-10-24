@@ -35,3 +35,9 @@ alias \
 	v="vim" \
 	lo="libreoffice" \
 	office="libreoffice"
+
+# Git alias
+alias \
+	gits="git status" \
+	gita="git add" \
+	gitc="git commit"
