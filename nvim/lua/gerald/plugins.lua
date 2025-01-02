@@ -42,12 +42,10 @@ local plugins = {
     'tpope/vim-sleuth',
 
     -- Icons
-    { 'echasnovski/mini.icons', version = false },
+    { 'echasnovski/mini.icons', version = false, opts={} },
 
-    -- NOTE: This is where your plugins related to LSP can be installed.
-    --  The configuration is done below. Search for lspconfig to find it below.
+    -- LSP Configuration & Plugins
     {
-        -- LSP Configuration & Plugins
         'neovim/nvim-lspconfig',
         dependencies = {
             -- Automatically install LSPs to stdpath for neovim
@@ -78,23 +76,6 @@ local plugins = {
             'rafamadriz/friendly-snippets',
         },
     },
-
-    -- Useful plugin to show you pending keybinds.
-    --[[ {
-        'folke/which-key.nvim',
-        event = "VeryLazy",
-        opts = {
-        },
-        keys = {
-            {
-                "<leader>?",
-                function()
-                    require("which-key").show({ global = false })
-                end,
-                desc = "Buffer Local Keymaps (which-key)",
-            },
-        },
-    }, ]]
 
     {
         -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -205,45 +186,8 @@ local plugins = {
 
             ---Highlight tailwind colors, e.g. 'bg-blue-500'
             enable_tailwind = false,
-
-            ---Set custom colors
-            ---Label must be properly escaped with '%' to adhere to `string.gmatch`
-            --- :help string.gmatch
-            custom_colors = {
-                -- { label = '%-%-theme%-primary%-color', color = '#0f1219' },
-                -- { label = '%-%-theme%-secondary%-color', color = '#5a5d64' },
-            }
         },
     },
-
-    {
-        'epwalsh/obsidian.nvim',
-        version = "*",
-        lazy = true,
-        event = {
-            "BufReadPre " .. vim.fn.expand("~") .. "/Documents/Studium/**.md",
-            "BufNewFile " .. vim.fn.expand("~") .. "/Documents/Studium/**.md",
-            "BufReadPre " .. vim.fn.expand("~") .. "/Documents/Ubersreik/**.md",
-            "BufNewFile " .. vim.fn.expand("~") .. "/Documents/Ubersreik/**.md",
-        },
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "hrsh7th/nvim-cmp",
-            "nvim-telescope/telescope.nvim",
-            "nvim-treesitter/nvim-treesitter"
-        },
-        opts = require("gerald.obsidian")
-    },
-
-    {
-        'MeanderingProgrammer/markdown.nvim',
-        main = "render-markdown",
-        ft = 'markdown',
-        opts = {},
-        name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use the mini.nvim suite
-    },
-
 }
 
 local opts = {}
