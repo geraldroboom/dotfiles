@@ -13,7 +13,7 @@
         "format-icons": {
             "default": ["", "", ""]
         },
-        "tooltip-format": "{desc} {volume}%"
+        "tooltip-format": "SINK: {desc} {volume}% \nSOURCE: {format_source}"
     },
 
     "hyprland/workspaces": {
