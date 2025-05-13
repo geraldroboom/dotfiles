@@ -25,3 +25,6 @@ btop/btop.log
 !mako/
 
 !waybar/
+
+!tmux/
+tmux/plugins/
