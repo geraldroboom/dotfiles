@@ -39,8 +39,3 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-
--- Obsidian keymaps
-vim.keymap.set('n', "<leader>oo", '<CMD>ObsidianOpen<CR>', { desc = "Open note" })
-vim.keymap.set('n', "<leader>ot", '<CMD>ObsidianTemplate<CR>', { desc = "Choose template" })
-vim.keymap.set('n', "<leader>on", '<CMD>ObsidianNewFromTemplate<CR>', { desc = "Create note" })
