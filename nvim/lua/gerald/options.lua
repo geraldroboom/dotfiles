@@ -7,7 +7,7 @@ vim.o.breakindent = false
 
 vim.o.completeopt = 'menuone,noselect'
 
-vim.o.conceallevel = 2
+vim.o.conceallevel = 0
 
 vim.o.cursorline = true
 
