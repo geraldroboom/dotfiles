@@ -28,3 +28,8 @@ btop/btop.log
 
 !tmux/
 tmux/plugins/
+
+!clipse
+clipse/tmp_files  
+clipse/clipboard_history.json 
+clipse/clipse.log
