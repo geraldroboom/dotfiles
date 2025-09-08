@@ -1,3 +1,6 @@
+-- Helpful stuff
+-- :help autocmd-events
+-- opts = {} to configure after loading
 
 local plugins = {
     {
@@ -28,8 +31,8 @@ local plugins = {
             options = {
                 -- icons_enabled = false,
                 theme = 'vscode',
-                -- component_separators = '|',
-                -- section_separators = '',
+                component_separators = '|',
+                section_separators = '',
             },
         },
     },
@@ -49,33 +52,94 @@ local plugins = {
         'neovim/nvim-lspconfig',
         dependencies = {
             -- Automatically install LSPs to stdpath for neovim
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
+            { 'mason-org/mason.nvim', opts = {} },
+            'mason-org/mason-lspconfig.nvim',
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-            -- Useful status updates for LSP
-            -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-            { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+            -- Useful status updates for LSP.
+            { 'j-hui/fidget.nvim', opts = {} },
 
-            -- Additional lua configuration, makes nvim stuff amazing!
-            'folke/neodev.nvim',
+            -- Allows extra capabilities provided by blink.cmp
+            'saghen/blink.cmp',
         },
+        config = function()
+            require('gerald.lsp')
+        end
     },
 
-    {
-        -- Autocompletion
-        'hrsh7th/nvim-cmp',
+  { -- Autocompletion
+    'saghen/blink.cmp',
+    event = 'VimEnter',
+    version = '1.*',
+    fuzzy = { implementation = "prefer_rust_with_warning" },
+    dependencies = {
+      -- Snippet Engine
+      {
+        'L3MON4D3/LuaSnip',
+        version = '2.*',
+        build = (function()
+          -- Build Step is needed for regex support in snippets.
+          -- This step is not supported in many windows environments.
+          -- Remove the below condition to re-enable on windows.
+          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+            return
+          end
+          return 'make install_jsregexp'
+        end)(),
         dependencies = {
-            -- Snippet Engine & its associated nvim-cmp source
-            'L3MON4D3/LuaSnip',
-            'saadparwaiz1/cmp_luasnip',
-
-            -- Adds LSP completion capabilities
-            'hrsh7th/cmp-nvim-lsp',
-
-            -- Adds a number of user-friendly snippets
+          -- `friendly-snippets` contains a variety of premade snippets.
+          {
             'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
+        opts = {},
+      },
+      'folke/lazydev.nvim',
     },
+    --- @module 'blink.cmp'
+    --- @type blink.cmp.Config
+    opts = {
+      keymap = {
+        -- All presets have the following mappings:
+        -- <tab>/<s-tab>: move to right/left of your snippet expansion
+        -- <c-space>: Open menu or open docs if already open
+        -- <c-n>/<c-p> or <up>/<down>: Select next/previous item
+        -- <c-e>: Hide menu
+        -- <c-k>: Toggle signature help
+        -- See :h blink-cmp-config-keymap for defining your own keymap
+        preset = 'default',
+
+        -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
+        --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+      },
+
+      appearance = {
+        nerd_font_variant = 'mono',
+      },
+
+      completion = {
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+      },
+
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        providers = {
+          lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+        },
+      },
+
+      snippets = { preset = 'luasnip' },
+
+      -- See :h blink-cmp-config-fuzzy for more information
+      fuzzy = { implementation = 'lua' },
+
+      -- Shows a signature help window while you type arguments for a function
+      signature = { enabled = true },
+    },
+  },
 
     {
         -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -116,6 +180,8 @@ local plugins = {
         },
     },
 
+    { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+
     {
         'mbbill/undotree',
     },
@@ -142,6 +208,7 @@ local plugins = {
     -- Fuzzy Finder (files, lsp, etc)
     {
         'nvim-telescope/telescope.nvim',
+        event = 'VimEnter',
         branch = '0.1.x',
         dependencies = {
             'nvim-lua/plenary.nvim',
@@ -157,7 +224,14 @@ local plugins = {
                     return vim.fn.executable 'make' == 1
                 end,
             },
+            { 'nvim-telescope/telescope-ui-select.nvim' },
+
+            -- Useful for getting pretty icons, but requires a Nerd Font.
+            { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
         },
+        config = function ()
+            require('gerald.telescope')
+        end
     },
 
     {
@@ -188,6 +262,7 @@ local plugins = {
             enable_tailwind = false,
         },
     },
+    require("gerald.debug")
 }
 
 local opts = {}

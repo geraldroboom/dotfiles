@@ -3,7 +3,7 @@
 
 vim.o.backup = false
 
-vim.o.breakindent = false
+vim.o.breakindent = true
 
 vim.o.completeopt = 'menuone,noselect'
 
@@ -27,7 +27,7 @@ vim.o.relativenumber = true
 
 vim.o.scrolloff = 8
 
-vim.o.showmode = true
+vim.o.showmode = false
 
 vim.o.shiftwidth = 4
 
@@ -50,9 +50,20 @@ vim.o.smartcase = true
 
 vim.wo.signcolumn = 'yes'
 
-vim.o.updatetime = 50
+vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
 vim.o.termguicolors = true
 
 vim.o.autoread = true
+
+-- vim.o.list = true
+-- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+vim.o.inccommand = 'split'
+
+vim.o.confirm = true
+
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
