@@ -262,7 +262,26 @@ local plugins = {
             enable_tailwind = false,
         },
     },
-    require("gerald.debug")
+
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' }, -- if you use standalone mini plugins
+        opts = {
+            completions = { lsp = { enabled = true } },
+            pipe_table = { preset = 'round' },
+        },
+        ft = "markdown",
+    },
+
+    {
+        "lervag/vimtex",
+        lazy = false,     -- we don't want to lazy load VimTeX
+        init = function()
+            vim.g.vimtex_view_method = "zathura"
+        end
+    },
+
+    require("gerald.debug"),
 }
 
 local opts = {}
