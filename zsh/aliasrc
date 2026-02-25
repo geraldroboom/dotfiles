@@ -40,4 +40,6 @@ alias \
 alias \
 	gits="git status" \
 	gita="git add" \
-	gitc="git commit"
+	gitc="git commit"\
+	gitp="git pull"\
+	gitpp="git push"
