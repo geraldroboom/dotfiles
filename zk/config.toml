@@ -3,13 +3,13 @@ dir = "~/Documents/Zettelsammlung"
 
 
 [note]
-language = de
+language = "de"
 default-title = "Ueberschrift"
 filename = "{{id}}"
 extension = "md"
 id-charset = "hex"
 id-length = 8
-id-case = lower
+id-case = "lower"
 
 
 [extra]
@@ -19,6 +19,8 @@ author = "Gerald Roboom"
 [tool]
 editor = "nvim"
 shell = "/bin/zsh"
+fzf-preview = "bat -p --color always {-1}"
+pager = "less -FIRX"
 
 
 [alias]
