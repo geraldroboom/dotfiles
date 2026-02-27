@@ -1,0 +1,39 @@
+[notebook]
+dir = "~/Documents/Zettelsammlung"
+
+
+[note]
+language = de
+default-title = "Ueberschrift"
+filename = "{{id}}"
+extension = "md"
+id-charset = "hex"
+id-length = 8
+id-case = lower
+
+
+[extra]
+author = "Gerald Roboom"
+
+
+[tool]
+editor = "nvim"
+shell = "/bin/zsh"
+
+
+[alias]
+edlast = "zk edit --limit 1 --sort modified- $@"
+recent = "zk edit --sort created- --created-after 'last two weeks' --interactive"
+lucky = "zk list --quiet --format full --sort random --limit 1"
+conf = '$EDITOR "$ZK_NOTEBOOK_DIR/.zk/config.toml"'
+wc = "zk list --format '{{word-count}}\t{{title}}' --sort word-count $@"
+bl = "zk list --link-to $@"
+log = "zk list --quiet --format path --delimiter0 $@ | xargs -0 git log --patch --"
+
+[lsp]
+
+[lsp.diagnostics]
+dead-link = "error"
+slef-link = "warning"
+missing-backlink = { level = "warning", position = "bottom" }
+
