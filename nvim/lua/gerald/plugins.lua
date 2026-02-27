@@ -23,19 +23,8 @@ local plugins = {
         end,
     },
 
-    {
-        -- Set lualine as statusline
-        'nvim-lualine/lualine.nvim',
-        -- See `:help lualine.txt`
-        opts = {
-            options = {
-                -- icons_enabled = false,
-                theme = 'vscode',
-                component_separators = '|',
-                section_separators = '',
-            },
-        },
-    },
+    require('gerald.plugins.lualine'),
+
 
     -- Git related plugins
     'tpope/vim-fugitive',
