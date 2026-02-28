@@ -1,5 +1,3 @@
-print('test lsp')
-
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
 vim.api.nvim_create_autocmd('LspAttach', {
