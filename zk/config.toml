@@ -1,7 +1,3 @@
-[notebook]
-dir = "~/Documents/Zettelsammlung"
-
-
 [note]
 language = "de"
 default-title = "Ueberschrift"
