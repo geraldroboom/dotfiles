@@ -23,8 +23,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # export XDG_CONFIG_DIRS="$HOME"
 # export XDG_TEMPLATES_DIR="$HOME/"
 
-### ~/ Clean-up ###
-
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
 export ONEDRIVE="$XDG_DOCUMENTS_DIR/onedrive"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+export ZK_NOTEBOOK_DIR="$XDG_DOCUMENTS_DIR/Zettelsammlung"
